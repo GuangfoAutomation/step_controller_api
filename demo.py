@@ -63,30 +63,40 @@ def motor7_ccw_cw_360():
 def motor1_ccw_cw_to_intr1_2():
     status = 0
     while(1):
-        if status == 0:
-            controller.exec_command("ccw motor 1 to intr 1 speed 60.0")
-        else:
-            controller.exec_command("cw motor 1 to intr 2 speed 60.0")
         controller.exec_command("query status")
         log = controller.read_shell_output().strip()
         if "move_1: 0" in log: 
             print("电机1已到达中断目标位置")
-            status = 1 - status
-        time.sleep(1)
+        else:
+            print("电机1未到达中断目标位置")
+            time.sleep(1)
+            continue
+
+        if status == 0:
+            controller.exec_command("ccw motor 1 to intr 1 speed 60.0")
+            status = 1
+        else:
+            controller.exec_command("cw motor 1 to intr 2 speed 60.0")
+            status = 0
 
 def motor2_ccw_cw_to_intr7_8():
     status = 0
     while(1):
-        if status == 0:
-            controller.exec_command("ccw motor 2 to intr 7 speed 60.0")
-        else:
-            controller.exec_command("cw motor 2 to intr 8 speed 60.0")
         controller.exec_command("query status")
         log = controller.read_shell_output().strip()
         if "move_2: 0" in log: 
             print("电机2已到达中断目标位置")
-            status = 1 - status
-        time.sleep(1)
+        else:
+            print("电机2未到达中断目标位置")
+            time.sleep(1)
+            continue
+
+        if status == 0:
+            controller.exec_command("ccw motor 2 to intr 7 speed 60.0")
+            status = 1
+        else:
+            controller.exec_command("cw motor 2 to intr 8 speed 60.0")
+            status = 0
 
 if __name__ == "__main__":
     controller.connect()
