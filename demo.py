@@ -1,4 +1,4 @@
-import stepmotor_controller
+import step_controller
 import time
 import threading
 
@@ -9,7 +9,7 @@ dict_for_connect_custom = \
     "username": "root",
     "password": "12345678"
 }
-controller = stepmotor_controller.ControllerSSHConnector(dict_for_connect_custom)
+controller = step_controller.ControllerSSHConnector(dict_for_connect_custom)
 
 def motor1_ccw_cw_360():
     while(1):
