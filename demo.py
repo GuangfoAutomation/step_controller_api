@@ -66,9 +66,9 @@ def motor1_ccw_cw_to_intr1_2():
         controller.exec_command("query status")
         log = controller.read_shell_output().strip()
         if "move_1: 0" in log: 
-            print("电机1已到达中断目标位置")
+            print("电机1已空闲")
         else:
-            print("电机1未到达中断目标位置")
+            print("电机1未空闲")
             time.sleep(1)
             continue
 
@@ -85,9 +85,9 @@ def motor2_ccw_cw_to_intr7_8():
         controller.exec_command("query status")
         log = controller.read_shell_output().strip()
         if "move_2: 0" in log: 
-            print("电机2已到达中断目标位置")
+            print("电机2已空闲")
         else:
-            print("电机2未到达中断目标位置")
+            print("电机2未空闲")
             time.sleep(1)
             continue
 
@@ -96,6 +96,44 @@ def motor2_ccw_cw_to_intr7_8():
             status = 1
         else:
             controller.exec_command("cw motor 2 to intr 8 speed 60.0")
+            status = 0
+
+def motor1_ccw_cw_freq_time():
+    status = 0
+    while(1):
+        controller.exec_command("query status")
+        log = controller.read_shell_output().strip()
+        if "move_1: 0" in log: 
+            print("电机1已空闲")
+        else:
+            print("电机1未空闲")
+            time.sleep(1)
+            continue
+
+        if status == 0:
+            controller.exec_command("ccw motor 1 freq 3200.0 time 3.0")
+            status = 1
+        else:
+            controller.exec_command("cw motor 1 freq 3200.0 time 3.0")
+            status = 0
+
+def motor2_ccw_cw_freq_time():
+    status = 0
+    while(1):
+        controller.exec_command("query status")
+        log = controller.read_shell_output().strip()
+        if "move_2: 0" in log: 
+            print("电机2已空闲")
+        else:
+            print("电机2未空闲")
+            time.sleep(1)
+            continue
+
+        if status == 0:
+            controller.exec_command("ccw motor 2 freq 3200.0 time 3.0")
+            status = 1
+        else:
+            controller.exec_command("cw motor 2 freq 3200.0 time 3.0")
             status = 0
 
 if __name__ == "__main__":
@@ -115,6 +153,10 @@ if __name__ == "__main__":
     # # 示例2，电机1和电机2分别往复循环到两边的中断位置
     # threading.Thread(target=motor1_ccw_cw_to_intr1_2, daemon=True).start()
     # threading.Thread(target=motor2_ccw_cw_to_intr7_8, daemon=True).start()
+
+    # # 示例3，电机1和电机2分别往复循环到两边的频率时间位置
+    # threading.Thread(target=motor1_ccw_cw_freq_time, daemon=True).start()
+    # threading.Thread(target=motor2_ccw_cw_freq_time, daemon=True).start()
 
     # 主线程保持运行
     while True:
