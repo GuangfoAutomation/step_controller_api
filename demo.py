@@ -224,7 +224,7 @@ def motor6_ccw_cw_to_intr7_8():
 def motor1_ccw_cw_freq_pulse():
     status = 0
     while(1):
-        time.sleep(1)
+        time.sleep(2.3)
         controller.exec_command("query status")
         log = controller.read_shell_output().strip()
         if "move_1: 0" in log: 
@@ -245,7 +245,7 @@ def motor1_ccw_cw_freq_pulse():
 def motor2_ccw_cw_freq_pulse():
     status = 0
     while(1):
-        time.sleep(1)
+        time.sleep(2.3)
         controller.exec_command("query status")
         log = controller.read_shell_output().strip()
         if "move_2: 0" in log: 
@@ -266,7 +266,7 @@ def motor2_ccw_cw_freq_pulse():
 def motor3_ccw_cw_freq_pulse():
     status = 0
     while(1):
-        time.sleep(1)
+        time.sleep(2.3)
         controller.exec_command("query status")
         log = controller.read_shell_output().strip()
         if "move_3: 0" in log: 
@@ -287,7 +287,7 @@ def motor3_ccw_cw_freq_pulse():
 def motor4_ccw_cw_freq_pulse():
     status = 0
     while(1):
-        time.sleep(1)
+        time.sleep(2.3)
         controller.exec_command("query status")
         log = controller.read_shell_output().strip()
         if "move_4: 0" in log: 
@@ -308,7 +308,7 @@ def motor4_ccw_cw_freq_pulse():
 def motor5_ccw_cw_freq_pulse():
     status = 0
     while(1):
-        time.sleep(1)
+        time.sleep(2.3)
         controller.exec_command("query status")
         log = controller.read_shell_output().strip()
         if "move_5: 0" in log: 
@@ -329,7 +329,7 @@ def motor5_ccw_cw_freq_pulse():
 def motor6_ccw_cw_freq_pulse():
     status = 0
     while(1):
-        time.sleep(1)
+        time.sleep(2.3)
         controller.exec_command("query status")
         log = controller.read_shell_output().strip()
         if "move_6: 0" in log: 
